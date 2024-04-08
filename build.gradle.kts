@@ -38,9 +38,9 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
 
-    implementation("org.jetbrains.exposed:exposed-core:0.29.1")
-    implementation ("org.jetbrains.exposed:exposed-dao:0.29.1")
-    implementation ("org.jetbrains.exposed:exposed-jdbc:0.29.1")
+    implementation("org.jetbrains.exposed:exposed-core:0.49.0")
+    implementation ("org.jetbrains.exposed:exposed-dao:0.49.0")
+    implementation ("org.jetbrains.exposed:exposed-jdbc:0.49.0")
     implementation ("org.postgresql:postgresql:42.3.8")
     implementation ("com.zaxxer:HikariCP:4.0.3")
 }
