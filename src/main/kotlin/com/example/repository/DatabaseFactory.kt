@@ -45,7 +45,7 @@ object DatabaseFactory {
         config.driverClassName = System.getenv("JDBC_DRIVER")
 
     //Sets the JDBC URL for the database connection by retrieving it from an environment variable named "JDBC_DATABASE_URL".
-        config.jdbcUrl = System.getenv("JDBC_DATABASE_URL")
+        config.jdbcUrl = System.getenv("DATABASE_URL")
 
     //Sets the maximum number of connections that can be maintained in the connection pool to 3.
         config.maximumPoolSize = 3
@@ -54,7 +54,7 @@ object DatabaseFactory {
         config.isAutoCommit = false
 
     //Sets the transaction isolation level to TRANSACTION_REPEATABLE_READ, ensuring that transactions are isolated from each other to a certain degree.
-        config.transactionIsolation = "TRANSACTION_REPETABLE_READ"
+        config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
 
     //Validates the configuration settings to ensure they are valid.
     config.validate()
