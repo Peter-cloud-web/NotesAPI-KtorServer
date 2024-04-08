@@ -2,6 +2,10 @@ package com.example.repository
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFactory {
 
@@ -15,6 +19,11 @@ object DatabaseFactory {
     developers building applications that require efficient database access.
     In summary, Hikari is a connection pooling library that helps Java applications manage
     and reuse database connections effectively, improving performance and scalability.*/
+
+    //Connect to database
+    fun init(){
+        Database.connect(hikari())
+    }
 
 //hikari(), is responsible for configuring and returning an instance of HikariDataSource,
     // which is typically used for managing connections to a database in Java or Kotlin applications.
@@ -43,5 +52,10 @@ object DatabaseFactory {
     config.validate()
 
         return HikariDataSource(config)
+    }
+
+    //Perform database transaction in the background
+    suspend fun<T> dbQuery(block:() -> T):T = withContext(Dispatchers.IO){
+        transaction{block()}
     }
 }
