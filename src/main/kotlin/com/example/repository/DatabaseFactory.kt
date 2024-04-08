@@ -1,11 +1,14 @@
 package com.example.repository
 
+import com.example.data.table.UserTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import javax.xml.validation.Schema
 
 object DatabaseFactory {
 
@@ -23,6 +26,11 @@ object DatabaseFactory {
     //Connect to database
     fun init(){
         Database.connect(hikari())
+
+        //Create usertable in the database
+        transaction{
+            SchemaUtils.create(UserTable)
+        }
     }
 
 //hikari(), is responsible for configuring and returning an instance of HikariDataSource,
