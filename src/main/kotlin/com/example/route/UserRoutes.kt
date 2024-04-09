@@ -5,7 +5,7 @@ import com.example.data.authentication_model.LoginRequest
 import com.example.data.authentication_model.RegisterRequest
 import com.example.data.authentication_model.SimpleResponse
 import com.example.data.model.user_model.User
-import com.example.repository.Repo
+import com.example.repository.UserRepo
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -19,7 +19,7 @@ const val REGISTER_REQUEST = "$USERS/register"
 const val LOGIN_REQUEST = "$USERS/login"
 
 fun Route.UserRoutes(
-    db: Repo,
+    db: UserRepo,
     jwtService: JwtService,
     hashFunction: (String) -> String
 ) {

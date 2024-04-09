@@ -5,7 +5,7 @@ import com.example.data.table.UserTable
 import com.example.repository.DatabaseFactory.dbQuery
 import org.jetbrains.exposed.sql.*
 
-class Repo {
+class UserRepo {
     // Add user to database in the user table
     suspend fun addUser(user: User){
         dbQuery{
