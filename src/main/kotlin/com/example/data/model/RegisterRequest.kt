@@ -3,8 +3,8 @@ package com.example.data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class User(
+data class RegisterRequest(
     val email:String,
-    val hashPassword:String,
-    val userName: String
+    val name:String,
+    val password:String
 )

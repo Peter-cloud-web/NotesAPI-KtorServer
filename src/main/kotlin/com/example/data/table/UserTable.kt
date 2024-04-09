@@ -1,5 +1,6 @@
 package com.example.data.table
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Table
 
 object UserTable: Table()  {

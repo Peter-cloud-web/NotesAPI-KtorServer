@@ -3,9 +3,8 @@ package com.example.repository
 import com.example.data.model.User
 import com.example.data.table.UserTable
 import com.example.repository.DatabaseFactory.dbQuery
-import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.insert
 
 class repo {
     // Add user to database in the user table
@@ -21,7 +20,7 @@ class repo {
     //Authenticate user by email which is unique
     //Convert row to user using row to user method
     suspend fun findUserByEmail(email:String) = dbQuery {
-        UserTable.select(UserTable.email.eq(email))
+        UserTable.selectAll().where { UserTable.email.eq(email) }
             .map { row ->
                 rowToUser(row)
             }

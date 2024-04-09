@@ -37,6 +37,8 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
+    implementation("io.ktor:ktor-server-locations:$ktor_version")
+
 
     implementation("org.jetbrains.exposed:exposed-core:0.49.0")
     implementation ("org.jetbrains.exposed:exposed-dao:0.49.0")
