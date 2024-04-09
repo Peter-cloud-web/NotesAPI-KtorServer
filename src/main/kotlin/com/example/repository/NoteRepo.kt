@@ -32,20 +32,21 @@ class NoteRepo {
                 where = {
                     NoteTable.userEmail.eq(email) and NoteTable.id.eq(note.id)
                 }
-            ){ noteTable ->
+            ) { noteTable ->
                 noteTable[NoteTable.noteTitle] = note.noteTitle
                 noteTable[NoteTable.description] = note.description
                 noteTable[NoteTable.date] = note.date
             }
         }
     }
-}
 
-suspend fun deleteNote(id:String){
-    dbQuery {
-        NoteTable.deleteWhere { NoteTable.id.eq(id) }
+    suspend fun deleteNote(id: String,email: String) {
+        dbQuery {
+            NoteTable.deleteWhere { NoteTable.userEmail.eq(email) and NoteTable.id.eq(id) }
+        }
     }
 }
+
 
 private fun rowToNote(row: ResultRow): Note? {
     if (row == null) {
