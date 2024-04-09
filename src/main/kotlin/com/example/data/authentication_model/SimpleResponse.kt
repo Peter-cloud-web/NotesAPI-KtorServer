@@ -1,7 +1,6 @@
-package com.example.data.model
+package com.example.data.authentication_model
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Serializer
 
 @Serializable
 data class SimpleResponse(

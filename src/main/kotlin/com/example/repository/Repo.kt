@@ -1,14 +1,13 @@
 package com.example.repository
 
-import com.example.data.model.User
+import com.example.data.model.user_model.User
 import com.example.data.table.UserTable
 import com.example.repository.DatabaseFactory.dbQuery
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
-class repo {
+class Repo {
     // Add user to database in the user table
-    suspend fun addUser(user:User){
+    suspend fun addUser(user: User){
         dbQuery{
             UserTable.insert { userTable ->
                 userTable[UserTable.email] = user.email
@@ -28,7 +27,7 @@ class repo {
     }
 
     //convert row to user object
-    private fun rowToUser(row: ResultRow?):User?{
+    private fun rowToUser(row: ResultRow?): User?{
         if(row == null){
             return null
         }
