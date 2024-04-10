@@ -7,6 +7,8 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class NoteRepo {
+
+    val currentCreationTime = System.currentTimeMillis()
     suspend fun addNote(note: Note, email: String) {
         dbQuery {
             NoteTable.insert { noteTable ->
@@ -14,7 +16,7 @@ class NoteRepo {
                 noteTable[NoteTable.userEmail] = email
                 noteTable[NoteTable.noteTitle] = note.noteTitle
                 noteTable[NoteTable.description] = note.description
-                noteTable[NoteTable.date] = note.date
+                noteTable[NoteTable.date] = currentCreationTime
             }
         }
     }
@@ -35,7 +37,7 @@ class NoteRepo {
             ) { noteTable ->
                 noteTable[NoteTable.noteTitle] = note.noteTitle
                 noteTable[NoteTable.description] = note.description
-                noteTable[NoteTable.date] = note.date
+                noteTable[NoteTable.date] = currentCreationTime
             }
         }
     }
@@ -56,6 +58,5 @@ private fun rowToNote(row: ResultRow): Note? {
         id = row[NoteTable.id],
         noteTitle = row[NoteTable.noteTitle],
         description = row[NoteTable.description],
-        date = row[NoteTable.date]
     )
 }
